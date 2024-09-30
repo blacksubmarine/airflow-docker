@@ -69,7 +69,12 @@ def read_csv_from_adls():
 
         # Remove 'kg' and cast 'Weight' to numeric
         df['Weight'] = pd.to_numeric(df['Weight'].str.replace('kg', ''), errors='coerce')
+        df['Inches'] = pd.to_numeric(df['Inches'], errors='coerce')
         
+
+        # Drop rows where 'Inches' or 'Weight' are NaN after conversion
+        df.dropna(subset=['Inches', 'Weight'], inplace=True)
+
         # Save the cleaned DataFrame to a CSV for the next task
         df.to_csv('/tmp/cleaned_laptops_data.csv', index=False)
         logging.info("Cleaned DataFrame saved to /tmp/cleaned_laptops_data.csv")
