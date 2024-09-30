@@ -21,3 +21,8 @@ docker build -t extending_airflow .
 docker build . --tag extending_airflow:latest
 ```
 
+-4 Run the image with:
+
+```
+docker compose up
+```
